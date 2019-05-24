@@ -50,7 +50,7 @@ NinJoGOESEregion:
     height: 2500
     width: 2500
     
-swissLarge1600m:
+nrSwiss1600m:
   description: SwissLarge 2500x2000 NPOL projection 1600m resolution
   projection:
     ellps: WGS84
