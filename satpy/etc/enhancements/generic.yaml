@@ -79,8 +79,8 @@ enhancements:
       method: *stretchfun
       kwargs:
         stretch: crude
-        min_stretch: [-25, -40, -30]
-        max_stretch: [0, 5, -65]
+        min_stretch: [-25, -40, 243]
+        max_stretch: [0, 5, 208]
 
   airmass_abi:
     standard_name: airmass
