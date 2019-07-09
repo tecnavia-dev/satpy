@@ -55,28 +55,44 @@ nrSwiss1600m:
   projection:
     ellps: WGS84
     proj: stere
-    lat_0: 60.0
+    lat_0: 90.0
     lon_0: 10
+    lat_ts: 45.0
   area_extent:
-    lower_left_xy: [-724534.506579, -1959852.778231]
-    upper_right_xy: [156610.094431, -1134112.405507]
+    lower_left_xy: [-721449.317293, -4819708.26141]
+    upper_right_xy: [317644.898410, -3988258.282896]
   shape:
-    height: 550
-    width: 600
+    height: 574
+    width: 715
     
+#nrEURO3km:
+#  description: nrEURO3km ninjo mercator projection
+#  projection:
+#    ellps: WGS84
+#    proj: eqc
+#    lat_0: 42.06787
+#    lon_0: -1.02539
+#  area_extent:
+#    lower_left_xy: [-4504247.085104304, -2251372.135989299]
+#    upper_right_xy: [4504247.085104305, 2251372.135989299]
+#  shape:
+#    height: 1500
+#    width: 3000
+
 nrEURO3km:
-  description: nrEURO3km ninjo mercator projection
+  description: nrEURO3km ninjo stereo projection
   projection:
     ellps: WGS84
-    proj: eqc
-    lat_0: 42.06787
-    lon_0: -1.02539
+    proj: stere
+    lat_0: 90.0
+    lon_0: 10.0
+    lat_ts: 45.0
   area_extent:
-    lower_left_xy: [-4504247.085104304, -2251372.135989299]
-    upper_right_xy: [4504247.085104305, 2251372.135989299]
+    lower_left_xy: [-3067739.903023, -6299538.251344]
+    upper_right_xy: [2742233.418467, -1662599.543871]
   shape:
-    height: 1500
-    width: 3000
+    height: 1600
+    width: 2000
 
 snowmaskIR:
   description: snowmaskIR

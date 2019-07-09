@@ -7,7 +7,7 @@ enhancements:
       method: &stretchfun !!python/name:satpy.enhancements.stretch ''
       kwargs: {stretch: linear}
     - name: outputinfo
-      method: &outputinfofun !!python/name:satpy.enhancements.set_outputinfo ''
+      method: &outputinfofun !!python/name:satpy.enhancements.set_output_info ''
   true_color_default:
     standard_name: true_color
     operations:
@@ -181,7 +181,7 @@ enhancements:
       kwargs:
         stretch: crude
         min_stretch: [0, 0, 203]
-        max_stretch: [100, 60, 323]
+        max_stretch: [100, 25, 323]
     - name: gamma
       method: *gammafun
       kwargs:
@@ -736,7 +736,7 @@ enhancements:
       method: *stretchfun
       kwargs:
         stretch: crude
-        min_stretch: [193]
+        min_stretch: [185.5]
         max_stretch: [313]
     - name: outputinfo
       method: *outputinfofun
@@ -753,7 +753,7 @@ enhancements:
       method: *stretchfun
       kwargs:
         stretch: crude
-        min_stretch: [193]
+        min_stretch: [185.5]
         max_stretch: [313]
     - name: outputinfo
       method: *outputinfofun
@@ -770,7 +770,7 @@ enhancements:
       method: *stretchfun
       kwargs:
         stretch: crude
-        min_stretch: [193]
+        min_stretch: [185.5]
         max_stretch: [313]
     - name: outputinfo
       method: *outputinfofun
@@ -787,7 +787,7 @@ enhancements:
       method: *stretchfun
       kwargs:
         stretch: crude
-        min_stretch: [193]
+        min_stretch: [185.5]
         max_stretch: [313]
     - name: outputinfo
       method: *outputinfofun
@@ -804,7 +804,7 @@ enhancements:
       method: *stretchfun
       kwargs:
         stretch: crude
-        min_stretch: [193]
+        min_stretch: [185.5]
         max_stretch: [313]
     - name: outputinfo
       method: *outputinfofun
@@ -821,7 +821,7 @@ enhancements:
       method: *stretchfun
       kwargs:
         stretch: crude
-        min_stretch: [193]
+        min_stretch: [185.5]
         max_stretch: [313]
     - name: outputinfo
       method: *outputinfofun
@@ -838,7 +838,7 @@ enhancements:
       method: *stretchfun
       kwargs:
         stretch: crude
-        min_stretch: [193]
+        min_stretch: [185.5]
         max_stretch: [313]
     - name: outputinfo
       method: *outputinfofun
@@ -855,7 +855,7 @@ enhancements:
       method: *stretchfun
       kwargs:
         stretch: crude
-        min_stretch: [193]
+        min_stretch: [185.5]
         max_stretch: [313]
     - name: outputinfo
       method: *outputinfofun
@@ -864,6 +864,20 @@ enhancements:
         gammacurve: 1
         physic_unit : "KELVIN"
         physic_value : "T"
+
+  VIS006_test:
+    standard_name: VIS006_test
+    operations:
+      - name: stretch
+        method: *stretchfun
+        kwargs:
+          stretch: crude
+          min_stretch: [0]
+          max_stretch: [100]
+      - name: outputinfo
+        method: *outputinfofun
+        kwargs:
+          newmode: True
 
   snow_fogday:
     standard_name: snow_fogday

@@ -401,3 +401,10 @@ composites:
     - name: IR_108
     - name: IR_120
     standard_name: stratus_fog
+
+
+  VIS006_test:
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    standard_name: VIS006_test
+    prerequisites:
+      - name: 'VIS006'
