@@ -333,6 +333,7 @@ composites:
       - name: 'HRV'
         modifiers: [sunz_corrected]
       - name: colorized_ir_clouds
+<<<<<<< HEAD
 
   VIS006_test:
     compositor: !!python/name:satpy.composites.GenericCompositor
@@ -407,3 +408,5 @@ composites:
     - name: IR_108
     - name: IR_120
     standard_name: stratus_fog
+=======
+>>>>>>> master

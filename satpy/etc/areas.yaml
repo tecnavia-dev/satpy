@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 nrIODC8km:
   description: nrIODC8km
   projection:
@@ -124,6 +125,8 @@ snowmaskHRV:
     lower_left_xy: [-808108.783276, 3580481.088239]
     upper_right_xy: [1595214.539263, 4963666.390614]
 
+=======
+>>>>>>> master
 omerc_bb:
   description: Oblique Mercator Bounding Box for Polar Overpasses
   projection:
