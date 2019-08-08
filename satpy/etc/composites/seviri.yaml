@@ -333,7 +333,13 @@ composites:
       - name: 'HRV'
         modifiers: [sunz_corrected]
       - name: colorized_ir_clouds
-  
+
+  VIS006_test:
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    standard_name: VIS006_test
+    prerequisites:
+      - name: 'VIS006'
+
   ir108_inverse:
     compositor: !!python/name:satpy.composites.GenericCompositor
     standard_name: ir108_inverse
@@ -401,10 +407,3 @@ composites:
     - name: IR_108
     - name: IR_120
     standard_name: stratus_fog
-
-
-  VIS006_test:
-    compositor: !!python/name:satpy.composites.GenericCompositor
-    standard_name: VIS006_test
-    prerequisites:
-      - name: 'VIS006'
