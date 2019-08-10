@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 nrIODC8km:
   description: nrIODC8km
   projection:
@@ -124,6 +125,8 @@ snowmaskHRV:
     lower_left_xy: [-808108.783276, 3580481.088239]
     upper_right_xy: [1595214.539263, 4963666.390614]
 
+=======
+>>>>>>> master
 omerc_bb:
   description: Oblique Mercator Bounding Box for Polar Overpasses
   projection:
@@ -1188,7 +1191,6 @@ arctica:
   area_extent:
     lower_left_xy: [-1458899.2042342643, -1458899.2042342639]
     upper_right_xy: [1458899.2042342639, 1458899.2042342643]
-
 euroasia:
   description: Euroasia - Global 1km USGS Landuse database
   projection:
@@ -1202,7 +1204,6 @@ euroasia:
   area_extent:
     lower_left_xy: [-3000000.0, -4999000.0]
     upper_right_xy: [9999000.0, 8000000.0]
-
 euroasia_10km:
   description: Euroasia - Global 1km USGS Landuse database
   projection:
@@ -1216,7 +1217,6 @@ euroasia_10km:
   area_extent:
     lower_left_xy: [-3000000.0, -4999000.0]
     upper_right_xy: [9999000.0, 8000000.0]
-
 euroasia_asia:
   description: Euroasia - optimised for Asia - Global 1km USGS Landuse database
   projection:
@@ -1230,7 +1230,6 @@ euroasia_asia:
   area_extent:
     lower_left_xy: [-8000000.0, -5499000.0]
     upper_right_xy: [4999000.0, 6500000.0]
-
 euroasia_asia_10km:
   description: Euroasia - optimised for Asia - Global 1km USGS Landuse database
   projection:
@@ -1244,7 +1243,6 @@ euroasia_asia_10km:
   area_extent:
     lower_left_xy: [-8000000.0, -5499000.0]
     upper_right_xy: [4999000.0, 6500000.0]
-
 australia_pacific:
   description: Austalia/Pacific - Global 1km USGS Landuse database
   projection:
@@ -1258,7 +1256,6 @@ australia_pacific:
   area_extent:
     lower_left_xy: [-5000000.0, -3944890.0]
     upper_right_xy: [4299000.0, 4054110.0]
-
 australia_pacific_10km:
   description: Austalia/Pacific - Global 1km USGS Landuse database
   projection:
@@ -1272,7 +1269,6 @@ australia_pacific_10km:
   area_extent:
     lower_left_xy: [-5000000.0, -3944890.0]
     upper_right_xy: [4299000.0, 4054110.0]
-
 africa:
   description: Africa - Global 1km USGS Landuse database
   projection:
@@ -1286,7 +1282,6 @@ africa:
   area_extent:
     lower_left_xy: [-4458000.0, -4795000.0]
     upper_right_xy: [3891000.0, 4480000.0]
-
 africa_10km:
   description: Africa - Global 1km USGS Landuse database
   projection:
@@ -1300,7 +1295,6 @@ africa_10km:
   area_extent:
     lower_left_xy: [-4458000.0, -4795000.0]
     upper_right_xy: [3891000.0, 4480000.0]
-
 southamerica:
   description: South America - Global 1km USGS Landuse database
   projection:
