@@ -4,10 +4,19 @@ enhancements:
   default:
     operations:
     - name: stretch
-      method: &stretchfun !!python/name:satpy.enhancements.stretch ''
+      method: &stretchfun !!python/name:satpy.enhancements.stretch
       kwargs: {stretch: linear}
+  reflectance_default:
+    standard_name: toa_bidirectional_reflectance
+    operations:
+    - name: linear_stretch
+      method: !!python/name:satpy.enhancements.stretch
+      kwargs: {stretch: 'crude', min_stretch: 0.0, max_stretch: 100.}
+    - name: gamma
+      method: !!python/name:satpy.enhancements.gamma
+      kwargs: {gamma: 1.5}
     - name: outputinfo
-      method: &outputinfofun !!python/name:satpy.enhancements.set_output_info ''
+      method: &outputinfofun !!python/name:satpy.enhancements.set_output_info
   true_color_default:
     standard_name: true_color
     operations:
