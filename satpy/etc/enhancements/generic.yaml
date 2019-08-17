@@ -750,7 +750,6 @@ enhancements:
     - name: outputinfo
       method: *outputinfofun
       kwargs:
-        newmode: True
         gammacurve: 1
         physic_unit : "KELVIN"
         physic_value : "T"
@@ -767,7 +766,6 @@ enhancements:
     - name: outputinfo
       method: *outputinfofun
       kwargs:
-        newmode: True
         gammacurve: 1
         physic_unit : "KELVIN"
         physic_value : "T"
@@ -784,7 +782,6 @@ enhancements:
     - name: outputinfo
       method: *outputinfofun
       kwargs:
-        newmode: True
         gammacurve: 1
         physic_unit : "KELVIN"
         physic_value : "T"
@@ -801,7 +798,6 @@ enhancements:
     - name: outputinfo
       method: *outputinfofun
       kwargs:
-        newmode: True
         gammacurve: 1
         physic_unit : "KELVIN"
         physic_value : "T"
@@ -818,7 +814,6 @@ enhancements:
     - name: outputinfo
       method: *outputinfofun
       kwargs:
-        newmode: True
         gammacurve: 1
         physic_unit : "KELVIN"
         physic_value : "T"
@@ -835,7 +830,6 @@ enhancements:
     - name: outputinfo
       method: *outputinfofun
       kwargs:
-        newmode: True
         gammacurve: 1
         physic_unit : "KELVIN"
         physic_value : "T"
@@ -852,7 +846,6 @@ enhancements:
     - name: outputinfo
       method: *outputinfofun
       kwargs:
-        newmode: True
         gammacurve: 1
         physic_unit : "KELVIN"
         physic_value : "T"
@@ -869,7 +862,6 @@ enhancements:
     - name: outputinfo
       method: *outputinfofun
       kwargs:
-        newmode: True
         gammacurve: 1
         physic_unit : "KELVIN"
         physic_value : "T"
@@ -882,11 +874,9 @@ enhancements:
         kwargs:
           stretch: crude
           min_stretch: [0]
-          max_stretch: [100]
+          max_stretch: [120]
       - name: outputinfo
         method: *outputinfofun
-        kwargs:
-          newmode: True
 
   snow_fogday:
     standard_name: snow_fogday
@@ -915,3 +905,67 @@ enhancements:
       method: *gammafun
       kwargs:
         gamma: [1.0, 1.0, 1.0]
+
+  him_ir1_inverse:
+    standard_name: him_ir1_inverse
+    operations:
+    - name: stretch
+      method: *stretchfun
+      kwargs:
+        stretch: crude
+        min_stretch: [185.5]
+        max_stretch: [313]
+    - name: outputinfo
+      method: *outputinfofun
+      kwargs:
+        gammacurve: 1
+        physic_unit : "KELVIN"
+        physic_value : "T"
+
+  him_ir3_inverse:
+    standard_name: him_ir3_inverse
+    operations:
+    - name: stretch
+      method: *stretchfun
+      kwargs:
+        stretch: crude
+        min_stretch: [185.5]
+        max_stretch: [313]
+    - name: outputinfo
+      method: *outputinfofun
+      kwargs:
+        gammacurve: 1
+        physic_unit : "KELVIN"
+        physic_value : "T"
+
+  c08_inverse:
+    standard_name: c08_inverse
+    operations:
+    - name: stretch
+      method: *stretchfun
+      kwargs:
+        stretch: crude
+        min_stretch: [185.5]
+        max_stretch: [313]
+    - name: outputinfo
+      method: *outputinfofun
+      kwargs:
+        gammacurve: 1
+        physic_unit : "KELVIN"
+        physic_value : "T"
+
+  c13_inverse:
+    standard_name: c13_inverse
+    operations:
+    - name: stretch
+      method: *stretchfun
+      kwargs:
+        stretch: crude
+        min_stretch: [185.5]
+        max_stretch: [313]
+    - name: outputinfo
+      method: *outputinfofun
+      kwargs:
+        gammacurve: 1
+        physic_unit : "KELVIN"
+        physic_value : "T"

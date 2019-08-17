@@ -147,3 +147,15 @@ composites:
         - name: C13
     - name: C08
     standard_name: airmass
+
+  c08_inverse:
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    standard_name: c08_inverse
+    prerequisites:
+      - name: C08
+
+  c13_inverse:
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    standard_name: c13_inverse
+    prerequisites:
+      - name: C13

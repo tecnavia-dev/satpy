@@ -42,13 +42,39 @@ NinJoGOESEregion:
   projection:
     ellps: WGS84
     proj: eqc
-    lon_0: -75.0
+    lon_0: -75.2
   area_extent:
     lower_left_xy: [-10008769.814946, -10016778.695711]
     upper_right_xy: [10016778.695711, 10008768.924390]
   shape:
     height: 2500
     width: 2500
+
+NinJoGOESWregion:
+  description: NinJo GOESW region
+  projection:
+    proj: eqc
+    lon_0: -137.2
+    a: 6378137.00
+  area_extent:
+    lower_left_xy: [-10008769.814946, -10016778.695711]
+    upper_right_xy: [10016778.695711, 10008768.924390]
+  shape:
+    height: 2500
+    width: 2500
+
+NinJoMTSATregion:
+  description: NinJoMTSATregio (u8DWDQuadratischePlattkarte)
+  projection:
+    proj: eqc
+    lon_0: 140.7
+    a: 6378137.00               
+  area_extent:   
+    lower_left_xy: [-10086693.458501,-10016778.695711]
+    upper_right_xy: [9938853.382363,10008768.924390]
+  shape:    
+    height: 2500        
+    width: 2500 
     
 nrSwiss1600m:
   description: SwissLarge 2500x2000 NPOL projection 1600m resolution
