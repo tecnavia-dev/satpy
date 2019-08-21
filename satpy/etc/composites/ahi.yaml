@@ -158,15 +158,16 @@ composites:
     prerequisites:
       - name: B14
 
-  him_ir1_inverse:
+  him_ir1_pytoch:
     compositor: !!python/name:satpy.composites.GenericCompositor
-    standard_name: him_ir1_inverse
+    standard_name: him_ir3_pytoch
     prerequisites:
       - name: IR1
 
-  him_ir3_inverse:
+  him_ir3_pytoch:
     compositor: !!python/name:satpy.composites.GenericCompositor
-    standard_name: him_ir3_inverse
+    standard_name: him_ir3_pytoch
     prerequisites:
       - name: IR3
+
 

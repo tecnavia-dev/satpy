@@ -37,7 +37,7 @@ nrEURO1km:
     height: 3800
     width: 7000
     
-NinJoGOESEregion:
+nrGOESE8km:
   description: NinJo GOESE region
   projection:
     ellps: WGS84
@@ -50,7 +50,7 @@ NinJoGOESEregion:
     height: 2500
     width: 2500
 
-NinJoGOESWregion:
+nrGOESW8km:
   description: NinJo GOESW region
   projection:
     proj: eqc
@@ -63,7 +63,7 @@ NinJoGOESWregion:
     height: 2500
     width: 2500
 
-NinJoMTSATregion:
+nrMTSAT8km:
   description: NinJoMTSATregio (u8DWDQuadratischePlattkarte)
   projection:
     proj: eqc

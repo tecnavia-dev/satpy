@@ -259,14 +259,22 @@ class HRITJMAFileHandler(HRITFileHandler):
                      'proj': 'geos',
                      'units': 'm'}
 
-        area = geometry.AreaDefinition(
+        '''area = geometry.AreaDefinition(
             area_id=AREA_NAMES[self.area_id]['short'],
             name=AREA_NAMES[self.area_id]['long'],
             proj_id='geosmsg',
             proj_dict=proj_dict,
             x_size=ncols,
             y_size=nlines,
-            area_extent=area_extent)
+            area_extent=area_extent)'''
+        area = geometry.AreaDefinition(
+            AREA_NAMES[self.area_id]['short'],
+            AREA_NAMES[self.area_id]['long'],
+            'geosmsg',
+            proj_dict,
+            ncols,
+            nlines,
+            area_extent)
 
         return area
 

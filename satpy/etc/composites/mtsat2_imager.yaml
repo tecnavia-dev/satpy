@@ -1,0 +1,36 @@
+sensor_name: mtsat2_imager
+
+modifiers:
+  rayleigh_corrected:
+    compositor: !!python/name:satpy.composites.PSPRayleighReflectance
+    atmosphere: us-standard
+    aerosol_type: marine_clean_aerosol
+    prerequisites:
+    - wavelength: 0.65
+      modifiers: [sunz_corrected]
+    optional_prerequisites:
+    - satellite_azimuth_angle
+    - satellite_zenith_angle
+    - solar_azimuth_angle
+    - solar_zenith_angle
+
+composites:
+  him_ir1_pytoch:
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    standard_name: him_ir3_pytoch
+    prerequisites:
+      - name: IR1
+
+  him_ir3_pytoch:
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    standard_name: him_ir3_pytoch
+    prerequisites:
+      - name: IR3
+
+  him_VIS_pytoch:
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    standard_name: him_VIS_pytoch
+    prerequisites:
+      - name: VIS
+
+

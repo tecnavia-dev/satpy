@@ -334,53 +334,65 @@ composites:
         modifiers: [sunz_corrected]
       - name: colorized_ir_clouds
   
-  ir108_inverse:
+  ir108_pytoch:
     compositor: !!python/name:satpy.composites.GenericCompositor
-    standard_name: ir108_inverse
+    standard_name: ir108_pytoch
     prerequisites:
       - name: 'IR_108'
       
-  ir039_inverse:
+  ir039_pytoch:
     compositor: !!python/name:satpy.composites.GenericCompositor
-    standard_name: ir039_inverse
+    standard_name: ir039_pytoch
     prerequisites:
       - name: 'IR_039'
       
-  ir087_inverse:
+  ir087_pytoch:
     compositor: !!python/name:satpy.composites.GenericCompositor
-    standard_name: ir087_inverse
+    standard_name: ir087_pytoch
     prerequisites:
       - name: 'IR_087'
       
-  ir097_inverse:
+  ir097_pytoch:
     compositor: !!python/name:satpy.composites.GenericCompositor
-    standard_name: ir097_inverse
+    standard_name: ir097_pytoch
     prerequisites:
       - name: 'IR_097'
       
-  ir120_inverse:
+  ir120_pytoch:
     compositor: !!python/name:satpy.composites.GenericCompositor
-    standard_name: ir120_inverse
+    standard_name: ir120_pytoch
     prerequisites:
       - name: 'IR_120'
       
-  ir134_inverse:
+  ir134_pytoch:
     compositor: !!python/name:satpy.composites.GenericCompositor
-    standard_name: ir134_inverse
+    standard_name: ir134_pytoch
     prerequisites:
       - name: 'IR_134'
       
-  wv062_inverse:
+  wv062_pytoch:
     compositor: !!python/name:satpy.composites.GenericCompositor
-    standard_name: wv062_inverse
+    standard_name: wv062_pytoch
     prerequisites:
       - name: 'WV_062'
       
-  wv073_inverse:
+  wv073_pytoch:
     compositor: !!python/name:satpy.composites.GenericCompositor
-    standard_name: wv073_inverse
+    standard_name: wv073_pytoch
     prerequisites:
       - name: 'WV_073'
+
+  VIS006_pytoch:
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    standard_name: VIS006_pytoch
+    prerequisites:
+      - name: 'VIS006'
+
+  VIS008_pytoch:
+    compositor: !!python/name:satpy.composites.GenericCompositor
+    standard_name: VIS008_pytoch
+    prerequisites:
+      - name: 'VIS008'
 
   snow_fogday:
     compositor: !!python/name:satpy.composites.GenericCompositor
@@ -401,10 +413,3 @@ composites:
     - name: IR_108
     - name: IR_120
     standard_name: stratus_fog
-
-
-  VIS006_test:
-    compositor: !!python/name:satpy.composites.GenericCompositor
-    standard_name: VIS006_test
-    prerequisites:
-      - name: 'VIS006'
