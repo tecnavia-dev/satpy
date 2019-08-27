@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#
 # Copyright (c) 2019 Satpy developers
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# This file is part of satpy.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# satpy is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# satpy is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# satpy.  If not, see <http://www.gnu.org/licenses/>.
 """Demo data download helper functions.
 
 Each ``get_*`` function below downloads files to a local directory and returns
@@ -139,10 +139,10 @@ def get_hurricane_florence_abi(base_dir='.', method=None, force=False,
         # patterns += ['gs://gcp-public-data-goes-16/ABI-L1b-RadM/2018/254/1[3456]/'
         #              '*C{:02d}*s20182541[3456]*.nc'.format(channel)]
         patterns += [(
-            'gs://gcp-public-data-goes-16/ABI-L1b-RadM/2018/254/13/*C{:02d}*s201825413*.nc'.format(channel),
-            'gs://gcp-public-data-goes-16/ABI-L1b-RadM/2018/254/14/*C{:02d}*s201825414*.nc'.format(channel),
-            'gs://gcp-public-data-goes-16/ABI-L1b-RadM/2018/254/15/*C{:02d}*s201825415*.nc'.format(channel),
-            'gs://gcp-public-data-goes-16/ABI-L1b-RadM/2018/254/16/*C{:02d}*s201825416*.nc'.format(channel),
+            'gs://gcp-public-data-goes-16/ABI-L1b-RadM/2018/254/13/*RadM1*C{:02d}*s201825413*.nc'.format(channel),
+            'gs://gcp-public-data-goes-16/ABI-L1b-RadM/2018/254/14/*RadM1*C{:02d}*s201825414*.nc'.format(channel),
+            'gs://gcp-public-data-goes-16/ABI-L1b-RadM/2018/254/15/*RadM1*C{:02d}*s201825415*.nc'.format(channel),
+            'gs://gcp-public-data-goes-16/ABI-L1b-RadM/2018/254/16/*RadM1*C{:02d}*s201825416*.nc'.format(channel),
         )]
     subdir = os.path.join(base_dir, 'abi_l1b', '20180911_hurricane_florence_abi_l1b')
     _makedirs(subdir, exist_ok=True)
