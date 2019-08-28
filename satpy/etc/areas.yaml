@@ -1,3 +1,155 @@
+nrIODC8km:
+  description: nrIODC8km
+  projection:
+    proj: eqc
+    lon_0: 41.5
+    a: 6378137.00
+  area_extent:
+    lower_left_xy: [-10008769.814946, -10016778.695711]
+    upper_right_xy: [10016777.025919, 10008768.924390]
+  shape:
+    height: 2500
+    width: 2500
+    
+nrMET3km:
+  description: nrMET3km
+  projection:
+    proj: eqc
+    lon_0: 0.0
+    a: 6378137.00
+  area_extent:
+    lower_left_xy: [-10010271.403557, -10013274.469460]
+    upper_right_xy: [10013274.469460, 10010271.403557]
+  shape:
+    height: 6666
+    width: 6666
+    
+nrEURO1km:
+  description: nrEURO1km
+  projection:
+    proj: eqc
+    lon_0: 0.0
+    a: 6378137.00
+  area_extent:
+    lower_left_xy: [-2518713.908133, 3082306.010984]
+    upper_right_xy: [4490228.732948, 6887160.120028]
+  shape:
+    height: 3800
+    width: 7000
+    
+nrGOESE8km:
+  description: NinJo GOESE region
+  projection:
+    ellps: WGS84
+    proj: eqc
+    lon_0: -75.2
+  area_extent:
+    lower_left_xy: [-10008769.814946, -10016778.695711]
+    upper_right_xy: [10016778.695711, 10008768.924390]
+  shape:
+    height: 2500
+    width: 2500
+
+nrGOESW8km:
+  description: NinJo GOESW region
+  projection:
+    proj: eqc
+    lon_0: -137.2
+    a: 6378137.00
+  area_extent:
+    lower_left_xy: [-10008769.814946, -10016778.695711]
+    upper_right_xy: [10016778.695711, 10008768.924390]
+  shape:
+    height: 2500
+    width: 2500
+
+nrMTSAT8km:
+  description: NinJoMTSATregio (u8DWDQuadratischePlattkarte)
+  projection:
+    proj: eqc
+    lon_0: 140.7
+    a: 6378137.00               
+  area_extent:   
+    lower_left_xy: [-10086693.458501,-10016778.695711]
+    upper_right_xy: [9938853.382363,10008768.924390]
+  shape:    
+    height: 2500        
+    width: 2500 
+    
+nrSwiss1600m:
+  description: SwissLarge 2500x2000 NPOL projection 1600m resolution
+  projection:
+    ellps: WGS84
+    proj: stere
+    lat_0: 90.0
+    lon_0: 10
+    lat_ts: 45.0
+  area_extent:
+    lower_left_xy: [-721449.317293, -4819708.26141]
+    upper_right_xy: [317644.898410, -3988258.282896]
+  shape:
+    height: 574
+    width: 715
+    
+#nrEURO3km:
+#  description: nrEURO3km ninjo mercator projection
+#  projection:
+#    ellps: WGS84
+#    proj: eqc
+#    lat_0: 42.06787
+#    lon_0: -1.02539
+#  area_extent:
+#    lower_left_xy: [-4504247.085104304, -2251372.135989299]
+#    upper_right_xy: [4504247.085104305, 2251372.135989299]
+#  shape:
+#    height: 1500
+#    width: 3000
+
+nrEURO3km:
+  description: nrEURO3km ninjo stereo projection
+  projection:
+    ellps: WGS84
+    proj: stere
+    lat_0: 90.0
+    lon_0: 10.0
+    lat_ts: 45.0
+  area_extent:
+    lower_left_xy: [-3067739.903023, -6299538.251344]
+    upper_right_xy: [2742233.418467, -1662599.543871]
+  shape:
+    height: 1600
+    width: 2000
+
+snowmaskIR:
+  description: snowmaskIR
+  projection:
+    proj: geos
+    lon_0: 0.0
+    a: 6378169.00
+    b: 6356583.80
+    h: 35785831.0
+  shape:
+    height: 461
+    width: 801
+  area_extent:
+    lower_left_xy: [-807108.186609, 3579481.649041]
+    upper_right_xy: [1596214.020380, 4962667.119304]
+
+snowmaskHRV:
+  description: snowmaskHRV
+  projection:
+    proj: geos
+    lon_0: 0.0
+    a: 6378169.00
+    b: 6356583.80
+    h: 35785831.0
+  shape:
+    height: 1383
+    width: 2403
+  area_extent:
+    lower_left_xy: [-808108.783276, 3580481.088239]
+    upper_right_xy: [1595214.539263, 4963666.390614]
+
 omerc_bb:
   description: Oblique Mercator Bounding Box for Polar Overpasses
   projection:
@@ -285,7 +437,6 @@ afghanistan:
     proj: merc
     lat_ts: 35.0
     a: 6370997.0
-    b: 6370997.0
     lon_0: 67.5
     lat_0: 35.0
   shape:
@@ -585,8 +736,6 @@ mesanX:
     o_lon_p: 10.0
     lon_0: -10.0
     a: 6371000.0
-    b: 6371000.0
-    wktext: True
   shape:
     height: 1608
     width: 1476
@@ -602,8 +751,6 @@ mesanE:
     o_lon_p: 10.0
     lon_0: -10.0
     a: 6371000.0
-    b: 6371000.0
-    wktext: True
   shape:
     height: 6294
     width: 5093
@@ -836,7 +983,6 @@ baltrad_lambert:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lon_0: 20.0
     lat_0: 60.0
   shape:
@@ -920,7 +1066,6 @@ npp_sample_m:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: 60.0
     lon_0: -120.0
   shape:
@@ -934,7 +1079,6 @@ arctic_europe_1km:
   projection:
     proj: laea
     a: 6371228.0
-    b: 6371228.0
     lon_0: 0.0
     lat_0: 90.0
   shape:
@@ -948,7 +1092,6 @@ arctic_europe_9km:
   projection:
     proj: laea
     a: 6371228.0
-    b: 6371228.0
     lon_0: 0.0
     lat_0: 90.0
   shape:
@@ -1010,7 +1153,6 @@ ease_sh:
     lat_0: -90.0
     lon_0: 0.0
     a: 6371228.0
-    b: 6371228.0
   shape:
     height: 425
     width: 425
@@ -1025,7 +1167,6 @@ ease_nh:
     lat_0: 90.0
     lon_0: 0.0
     a: 6371228.0
-    b: 6371228.0
   shape:
     height: 425
     width: 425
@@ -1052,7 +1193,6 @@ antarctica:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lon_0: 0.0
     lat_0: -90.0
   shape:
@@ -1066,7 +1206,6 @@ arctica:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lon_0: 0.0
     lat_0: 90.0
   shape:
@@ -1080,7 +1219,6 @@ euroasia:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: 55.0
     lon_0: 20.0
   shape:
@@ -1094,7 +1232,6 @@ euroasia_10km:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: 55.0
     lon_0: 20.0
   shape:
@@ -1108,7 +1245,6 @@ euroasia_asia:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: 45.0
     lon_0: 100.0
   shape:
@@ -1122,7 +1258,6 @@ euroasia_asia_10km:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: 45.0
     lon_0: 100.0
   shape:
@@ -1136,7 +1271,6 @@ australia_pacific:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: -15.0
     lon_0: 135.0
   shape:
@@ -1150,7 +1284,6 @@ australia_pacific_10km:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: -15.0
     lon_0: 135.0
   shape:
@@ -1164,7 +1297,6 @@ africa:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: 5.0
     lon_0: 20.0
   shape:
@@ -1178,7 +1310,6 @@ africa_10km:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: 5.0
     lon_0: 20.0
   shape:
@@ -1192,7 +1323,6 @@ southamerica:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: -15.0
     lon_0: -60.0
   shape:
@@ -1206,7 +1336,6 @@ southamerica_10km:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: -15.0
     lon_0: -60.0
   shape:
@@ -1220,7 +1349,6 @@ northamerica:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: 50.0
     lon_0: -100.0
   shape:
@@ -1234,7 +1362,6 @@ northamerica_10km:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lat_0: 50.0
     lon_0: -100.0
   shape:
@@ -1288,7 +1415,6 @@ nsper_swe:
     lon_0: 16.0
     lat_0: 58.0
     h: 360000000.0
-    wktext: True
   shape:
     height: 1024
     width: 1024
@@ -1313,7 +1439,6 @@ scanice:
   projection:
     proj: laea
     a: 6370997.0
-    b: 6370997.0
     lon_0: 0.0
     lat_0: 64.0
   shape:
