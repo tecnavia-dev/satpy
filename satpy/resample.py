@@ -264,12 +264,16 @@ class BaseResampler(object):
         cache_id = self.precompute(cache_dir=cache_dir, **kwargs)
         return self.compute(data, cache_id=cache_id, **kwargs)
 
-    def _create_cache_filename(self, cache_dir=None, **kwargs):
+    def _create_cache_filename(self, cache_dir=None, cache_extension="", **kwargs):
         """Create filename for the cached resampling parameters"""
         cache_dir = cache_dir or '.'
         hash_str = self.get_hash(**kwargs)
 
-        return os.path.join(cache_dir, 'resample_lut-' + hash_str + '.npz')
+        extension = ""
+        if cache_extension is not "":
+            extension = cache_extension + "_"
+            
+        return os.path.join(cache_dir, extension + 'resample_lut-' + hash_str + '.npz')
 
 
 class KDTreeResampler(BaseResampler):
@@ -309,6 +313,9 @@ class KDTreeResampler(BaseResampler):
         where data points are invalid.
 
         """
+
+        cache_extension = kwargs['cache_extension'] if 'cache_extension' in kwargs else ""
+
         del kwargs
         source_geo_def = self.source_geo_def
 
@@ -335,12 +342,12 @@ class KDTreeResampler(BaseResampler):
             self.resampler = XArrayResamplerNN(**kwargs)
 
         try:
-            self.load_neighbour_info(cache_dir, mask=mask, **kwargs)
+            self.load_neighbour_info(cache_dir, mask=mask, cache_extension=cache_extension, **kwargs)
             LOG.debug("Read pre-computed kd-tree parameters")
         except IOError:
             LOG.debug("Computing kd-tree parameters")
             self.resampler.get_neighbour_info(mask=mask)
-            self.save_neighbour_info(cache_dir, mask=mask, **kwargs)
+            self.save_neighbour_info(cache_dir, mask=mask, cache_extension=cache_extension, **kwargs)
 
     def _apply_cached_indexes(self, cached_indexes, persist=False):
         """Reassign various resampler index attributes."""
@@ -356,10 +363,10 @@ class KDTreeResampler(BaseResampler):
                 cached_indexes[elt] = val = val.persist()
             setattr(self.resampler, elt, val)
 
-    def load_neighbour_info(self, cache_dir, mask=None, **kwargs):
+    def load_neighbour_info(self, cache_dir, mask=None, cache_extension="", **kwargs):
         """Read index arrays from either the in-memory or disk cache."""
         mask_name = getattr(mask, 'name', None)
-        filename = self._create_cache_filename(cache_dir,
+        filename = self._create_cache_filename(cache_dir, cache_extension,
                                                mask=mask_name, **kwargs)
         #if kwargs.get('mask') in self._index_caches:
         if kwargs.get('mask') in self._index_caches and cache_dir is not False:
@@ -374,12 +381,12 @@ class KDTreeResampler(BaseResampler):
         else:
             raise IOError
 
-    def save_neighbour_info(self, cache_dir, mask=None, **kwargs):
+    def save_neighbour_info(self, cache_dir, mask=None, cache_extension="", **kwargs):
         """Cache resampler's index arrays if there is a cache dir."""
         if cache_dir:
             mask_name = getattr(mask, 'name', None)
             filename = self._create_cache_filename(
-                cache_dir, mask=mask_name, **kwargs)
+                cache_dir, cache_extension, mask=mask_name, **kwargs)
             LOG.info('Saving kd_tree neighbour info to %s', filename)
             cache = self._read_resampler_attrs()
             # update the cache in place with persisted dask arrays
@@ -902,7 +909,8 @@ def resample_dataset(dataset, destination_area, **kwargs):
     
     no_cache = kwargs.pop('no_cache_for', [])
     if dataset.attrs['name'] in no_cache:
-        kwargs['cache_dir'] = False
+        #kwargs['cache_dir'] = False
+        kwargs['cache_extension'] = dataset.attrs['name']
         LOG.info('Caching removed for %s', dataset.attrs['name'])
 
     new_data = resample(source_area, dataset, destination_area, fill_value=fill_value, **kwargs)
