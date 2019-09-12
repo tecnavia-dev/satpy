@@ -437,6 +437,7 @@ afghanistan:
     proj: merc
     lat_ts: 35.0
     a: 6370997.0
+    b: 6370997.0
     lon_0: 67.5
     lat_0: 35.0
   shape:
@@ -736,6 +737,8 @@ mesanX:
     o_lon_p: 10.0
     lon_0: -10.0
     a: 6371000.0
+    b: 6371000.0
+    wktext: True
   shape:
     height: 1608
     width: 1476
@@ -751,6 +754,8 @@ mesanE:
     o_lon_p: 10.0
     lon_0: -10.0
     a: 6371000.0
+    b: 6371000.0
+    wktext: True
   shape:
     height: 6294
     width: 5093
@@ -983,6 +988,7 @@ baltrad_lambert:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lon_0: 20.0
     lat_0: 60.0
   shape:
@@ -1066,6 +1072,7 @@ npp_sample_m:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: 60.0
     lon_0: -120.0
   shape:
@@ -1079,6 +1086,7 @@ arctic_europe_1km:
   projection:
     proj: laea
     a: 6371228.0
+    b: 6371228.0
     lon_0: 0.0
     lat_0: 90.0
   shape:
@@ -1092,6 +1100,7 @@ arctic_europe_9km:
   projection:
     proj: laea
     a: 6371228.0
+    b: 6371228.0
     lon_0: 0.0
     lat_0: 90.0
   shape:
@@ -1153,6 +1162,7 @@ ease_sh:
     lat_0: -90.0
     lon_0: 0.0
     a: 6371228.0
+    b: 6371228.0
   shape:
     height: 425
     width: 425
@@ -1167,6 +1177,7 @@ ease_nh:
     lat_0: 90.0
     lon_0: 0.0
     a: 6371228.0
+    b: 6371228.0
   shape:
     height: 425
     width: 425
@@ -1193,6 +1204,7 @@ antarctica:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lon_0: 0.0
     lat_0: -90.0
   shape:
@@ -1206,6 +1218,7 @@ arctica:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lon_0: 0.0
     lat_0: 90.0
   shape:
@@ -1219,6 +1232,7 @@ euroasia:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: 55.0
     lon_0: 20.0
   shape:
@@ -1232,6 +1246,7 @@ euroasia_10km:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: 55.0
     lon_0: 20.0
   shape:
@@ -1245,6 +1260,7 @@ euroasia_asia:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: 45.0
     lon_0: 100.0
   shape:
@@ -1258,6 +1274,7 @@ euroasia_asia_10km:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: 45.0
     lon_0: 100.0
   shape:
@@ -1271,6 +1288,7 @@ australia_pacific:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: -15.0
     lon_0: 135.0
   shape:
@@ -1284,6 +1302,7 @@ australia_pacific_10km:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: -15.0
     lon_0: 135.0
   shape:
@@ -1297,6 +1316,7 @@ africa:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: 5.0
     lon_0: 20.0
   shape:
@@ -1310,6 +1330,7 @@ africa_10km:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: 5.0
     lon_0: 20.0
   shape:
@@ -1323,6 +1344,7 @@ southamerica:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: -15.0
     lon_0: -60.0
   shape:
@@ -1336,6 +1358,7 @@ southamerica_10km:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: -15.0
     lon_0: -60.0
   shape:
@@ -1349,6 +1372,7 @@ northamerica:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: 50.0
     lon_0: -100.0
   shape:
@@ -1362,6 +1386,7 @@ northamerica_10km:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lat_0: 50.0
     lon_0: -100.0
   shape:
@@ -1415,6 +1440,7 @@ nsper_swe:
     lon_0: 16.0
     lat_0: 58.0
     h: 360000000.0
+    wktext: True
   shape:
     height: 1024
     width: 1024
@@ -1439,6 +1465,7 @@ scanice:
   projection:
     proj: laea
     a: 6370997.0
+    b: 6370997.0
     lon_0: 0.0
     lat_0: 64.0
   shape:

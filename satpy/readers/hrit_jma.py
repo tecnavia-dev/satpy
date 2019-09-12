@@ -1,25 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (c) 2010-2017
-
-# Author(s):
-
-#   Martin Raspaud <martin.raspaud@smhi.se>
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+# Copyright (c) 2010-2017 Satpy developers
+#
+# This file is part of satpy.
+#
+# satpy is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# satpy is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# satpy.  If not, see <http://www.gnu.org/licenses/>.
 """HRIT format reader for JMA data
 ************************************
 
@@ -259,17 +254,9 @@ class HRITJMAFileHandler(HRITFileHandler):
                      'proj': 'geos',
                      'units': 'm'}
 
-        '''area = geometry.AreaDefinition(
+        area = geometry.AreaDefinition(
             area_id=AREA_NAMES[self.area_id]['short'],
             name=AREA_NAMES[self.area_id]['long'],
-            proj_id='geosmsg',
-            proj_dict=proj_dict,
-            x_size=ncols,
-            y_size=nlines,
-            area_extent=area_extent)'''
-        area = geometry.AreaDefinition(
-            AREA_NAMES[self.area_id]['short'],
-            AREA_NAMES[self.area_id]['long'],
             'geosmsg',
             proj_dict,
             ncols,
@@ -300,6 +287,10 @@ class HRITJMAFileHandler(HRITFileHandler):
         res.attrs['satellite_longitude'] = float(self.mda['projection_parameters']['SSP_longitude'])
         res.attrs['satellite_latitude'] = 0.
         res.attrs['satellite_altitude'] = float(self.mda['projection_parameters']['h'])
+        res.attrs['orbital_parameters'] = {
+            'projection_longitude': float(self.mda['projection_parameters']['SSP_longitude']),
+            'projection_latitude': 0.,
+            'projection_altitude': float(self.mda['projection_parameters']['h'])}
 
         return res
 
@@ -307,6 +298,10 @@ class HRITJMAFileHandler(HRITFileHandler):
         """Mask space pixels"""
         geomask = get_geostationary_mask(area=self.area)
         return data.where(geomask)
+
+    @staticmethod
+    def _interp(arr, cal):
+        return np.interp(arr.ravel(), cal[:, 0], cal[:, 1]).reshape(arr.shape)
 
     def calibrate(self, data, calibration):
         """Calibrate the data."""
@@ -318,13 +313,7 @@ class HRITJMAFileHandler(HRITFileHandler):
             raise NotImplementedError("Can't calibrate to radiance.")
         else:
             cal = self.calibration_table
-
-            def interp(arr):
-                return np.interp(arr.ravel(),
-                                 cal[:, 0], cal[:, 1]).reshape(arr.shape)
-
-            res = data.data.map_blocks(interp, dtype=cal[:, 0].dtype)
-
+            res = data.data.map_blocks(self._interp, cal, dtype=cal[:, 0].dtype)
             res = xr.DataArray(res,
                                dims=data.dims, attrs=data.attrs,
                                coords=data.coords)

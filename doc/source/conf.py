@@ -16,13 +16,19 @@
 
 import os
 import sys
+from datetime import datetime
+from pkg_resources import get_distribution
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.append(os.path.abspath('../../'))
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-from satpy import __version__  # noqa
+
+# get version using setuptools-scm
+release = get_distribution('satpy').version
+# for example take major/minor
+version = '.'.join(release.split('.')[:2])
 
 
 class Mock(object):
@@ -59,7 +65,8 @@ autoclass_content = 'both'  # append class __init__ docstring to the class docst
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage',
-              'sphinx.ext.doctest', 'sphinx.ext.napoleon', 'doi_role']
+              'sphinx.ext.doctest', 'sphinx.ext.napoleon', 'sphinx.ext.autosummary', 'doi_role',
+              'sphinx.ext.viewcode']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -74,8 +81,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'SatPy'
-copyright = u'2009-2016, The PyTroll Team'
+project = u'Satpy'
+copyright = u'2009-{}, The PyTroll Team'.format(datetime.utcnow().strftime("%Y"))
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -244,8 +251,11 @@ intersphinx_mapping = {
     'scipy': ('https://docs.scipy.org/doc/scipy/reference', None),
     'xarray': ('https://xarray.pydata.org/en/stable', None),
     'dask': ('https://docs.dask.org/en/latest', None),
+    'jobqueue': ('https://jobqueue.dask.org/en/latest', None),
     'pyresample': ('https://pyresample.readthedocs.io/en/stable', None),
     'trollsift': ('https://trollsift.readthedocs.io/en/stable', None),
     'trollimage': ('https://trollimage.readthedocs.io/en/stable', None),
     'pydecorate': ('https://pydecorate.readthedocs.io/en/stable', None),
+    'geoviews': ('http://geoviews.org', None),
+    'pyproj': ('https://pyproj4.github.io/pyproj/dev', None)
 }

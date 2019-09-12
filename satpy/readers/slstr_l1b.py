@@ -1,25 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (c) 2016 Martin Raspaud
-
-# Author(s):
-
-#   Martin Raspaud <martin.raspaud@smhi.se>
-#   Ulrik Egede <u.egede@imperial.ac.uk>
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# Copyright (c) 2016 Satpy developers
+#
+# This file is part of satpy.
+#
+# satpy is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# satpy is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# satpy.  If not, see <http://www.gnu.org/licenses/>.
 """Compact viirs format.
 """
 
@@ -113,6 +108,12 @@ class NCSLSTR1B(BaseFileHandler):
         self.platform_name = PLATFORM_NAMES[filename_info['mission_id']]
         self.sensor = 'slstr'
 
+    @staticmethod
+    def _cal_rad(rad, didx, solar_flux=None):
+        indices = np.isfinite(didx)
+        rad[indices] /= solar_flux[didx[indices].astype(int)]
+        return rad
+
     def get_dataset(self, key, info):
         """Load a dataset."""
 
@@ -134,13 +135,8 @@ class NCSLSTR1B(BaseFileHandler):
             d_index = self.indices['detector_{}{}'.format(self.stripe, self.view)]
             idx = 0 if self.view == 'n' else 1   # 0: Nadir view, 1: oblique (check).
 
-            def cal_rad(rad, didx, solar_flux=None):
-                indices = np.isfinite(didx)
-                rad[indices] /= solar_flux[didx[indices].astype(int)]
-                return rad
-
             radiances.data = da.map_blocks(
-                cal_rad, radiances.data, d_index.data, solar_flux=solar_flux[:, idx].values)
+                self._cal_rad, radiances.data, d_index.data, solar_flux=solar_flux[:, idx].values)
 
             radiances *= np.pi * 100
             units = '%'

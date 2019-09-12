@@ -1,5 +1,5 @@
 =================================
- Adding a Custom Reader to SatPy
+ Adding a Custom Reader to Satpy
 =================================
 
 In order to add a reader to satpy, you will need to create two files:
@@ -14,7 +14,7 @@ format for SEVIRI data
 Naming your reader
 ------------------
 
-SatPy tries to follow a standard scheme for naming its readers. These names
+Satpy tries to follow a standard scheme for naming its readers. These names
 are used in filenames, but are also used by users so it is important that
 the name be recognizable and clear. Although some
 special cases exist, most fit in to the following naming scheme:
@@ -57,7 +57,7 @@ if needed (ex. goes-imager).
 
 The existing :ref:`reader's table <reader_table>` can be used for reference.
 When in doubt, reader names can be discussed in the github pull
-request when this reader is added to SatPy or a github issue.
+request when this reader is added to Satpy or a github issue.
 
 The YAML file
 -------------
@@ -73,19 +73,37 @@ The ``reader`` section
 The ``reader`` section, that provides basic parameters for the reader.
 
 The parameters to provide in this section are:
- - description: General description of the reader
- - name: this is the name of the reader, it should be the same as the
+ - name: This is the name of the reader, it should be the same as the
    filename (without the .yaml extension). The naming convention for
    this is described above in the :ref:`reader_naming` section above.
- - sensors: the list of sensors this reader will support
- - reader: the metareader to use, in most cases the
+ - short_name (optional): Human-readable version of the reader 'name'.
+   If not provided, applications using this can default to taking the 'name',
+   replacing ``_`` with spaces and uppercasing every letter.
+ - long_name: Human-readable title for the reader. This may be used as a
+   section title on a website or in GUI applications using Satpy. Default
+   naming scheme is ``<space program> <sensor> Level <level> [<format>]``.
+   For example, for the ``abi_l1b`` reader this is ``"GOES-R ABI Level 1b"``
+   where "GOES-R" is the name of the program and **not** the name of the
+   platform/satellite. This scheme may not work for all readers, but in
+   general should be followed. See existing readers for more examples.
+ - description: General description of the reader. This may include any
+   `restructuredtext <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_
+   formatted text like links to PDFs or sites with more information on the
+   file format. This can be multiline if formatted properly in YAML (see
+   example below).
+ - sensors: The list of sensors this reader will support. This must be
+   all lowercase letters for full support throughout in Satpy.
+ - reader: The main python reader class to use, in most cases the
    ``FileYAMLReader`` is a good choice.
 
 .. code:: yaml
 
     reader:
-      description: NetCDF4 reader for the Eumetsat MSG format
-      name: nc_seviri_l1b
+      name: seviri_l1b_nc
+      short_name: SEVIRI L1b NetCDF4
+      long_name: MSG SEVIRI Level 1b (NetCDF4)
+      description: >
+        NetCDF4 reader for EUMETSAT MSG SEVIRI Level 1b files.
       sensors: [seviri]
       reader: !!python/name:satpy.readers.yaml_reader.FileYAMLReader
 
@@ -363,7 +381,7 @@ needs to implement a few methods:
    - the filename info (dict) that we get by parsing the filename using the pattern defined in the yaml file
    - the filetype info that we get from the filetype definition in the yaml file
 
-  This method can also recieve other file handler instances as parameter
+  This method can also receive other file handler instances as parameter
   if the filetype at hand has requirements. (See the explanation in the
   YAML file filetype section above)
 
@@ -399,7 +417,7 @@ On top of that, two attributes need to be defined: ``start_time`` and
 
         def get_dataset(self, dataset_id, dataset_info):
             if dataset_id.calibration != 'radiance':
-                # TODO: implement calibration to relfectance or brightness temperature
+                # TODO: implement calibration to reflectance or brightness temperature
                 return
             if self.nc is None:
                 self.nc = xr.open_dataset(self.filename,

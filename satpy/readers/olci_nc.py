@@ -1,25 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (c) 2016 Martin Raspaud
-
-# Author(s):
-
-#   Martin Raspaud <martin.raspaud@smhi.se>
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+# Copyright (c) 2016 Satpy developers
+#
+# This file is part of satpy.
+#
+# satpy is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# satpy is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# satpy.  If not, see <http://www.gnu.org/licenses/>.
 """Sentinel-3 OLCI reader
 """
 
@@ -158,16 +153,16 @@ class NCOLCI1B(NCOLCIChannelBase):
                        dtype=solar_flux.dtype)
         return res
 
+    @staticmethod
+    def _get_items(idx, solar_flux):
+        return solar_flux[idx]
+
     def _get_solar_flux(self, band):
         """Get the solar flux for the band."""
         solar_flux = self.cal['solar_flux'].isel(bands=band).values
         d_index = self.cal['detector_index'].fillna(0).astype(int)
 
-        def get_items(idx, solar_flux):
-            return solar_flux[idx]
-
-        return da.map_blocks(get_items, d_index.data, solar_flux=solar_flux,
-                             dtype=solar_flux.dtype)
+        return da.map_blocks(self._get_items, d_index.data, solar_flux=solar_flux, dtype=solar_flux.dtype)
 
     def get_dataset(self, key, info):
         """Load a dataset."""

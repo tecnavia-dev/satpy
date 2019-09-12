@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Copyright (c) 2017-2018 Satpy developers
 #
-# Copyright (c) 2017-2018 SatPy Developers
+# This file is part of satpy.
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# satpy is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# satpy is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License along with
+# satpy.  If not, see <http://www.gnu.org/licenses/>.
 """Tests for the SCMI writer
 """
 import os
@@ -63,11 +63,11 @@ class TestSCMIWriter(unittest.TestCase):
             'test',
             'test',
             'test',
-            proj_dict=proj4_str_to_dict('+proj=lcc +datum=WGS84 +ellps=WGS84 +lon_0=-95. '
-                                        '+lat_0=25 +lat_1=25 +units=m +no_defs'),
-            x_size=100,
-            y_size=200,
-            area_extent=(-1000., -1500., 1000., 1500.),
+            proj4_str_to_dict('+proj=lcc +datum=WGS84 +ellps=WGS84 +lon_0=-95. '
+                              '+lat_0=25 +lat_1=25 +units=m +no_defs'),
+            100,
+            200,
+            (-1000., -1500., 1000., 1500.),
         )
         now = datetime(2018, 1, 1, 12, 0, 0)
         ds = DataArray(
@@ -97,11 +97,11 @@ class TestSCMIWriter(unittest.TestCase):
             'test',
             'test',
             'test',
-            proj_dict=proj4_str_to_dict('+proj=lcc +datum=WGS84 +ellps=WGS84 +lon_0=-95. '
-                                        '+lat_0=25 +lat_1=25 +units=m +no_defs'),
-            x_size=100,
-            y_size=200,
-            area_extent=(-1000., -1500., 1000., 1500.),
+            proj4_str_to_dict('+proj=lcc +datum=WGS84 +ellps=WGS84 +lon_0=-95. '
+                              '+lat_0=25 +lat_1=25 +units=m +no_defs'),
+            100,
+            200,
+            (-1000., -1500., 1000., 1500.),
         )
         now = datetime(2018, 1, 1, 12, 0, 0)
         ds = DataArray(
@@ -130,11 +130,11 @@ class TestSCMIWriter(unittest.TestCase):
             'test',
             'test',
             'test',
-            proj_dict=proj4_str_to_dict('+proj=lcc +datum=WGS84 +ellps=WGS84 +lon_0=-95. '
-                                        '+lat_0=25 +lat_1=25 +units=m +no_defs'),
-            x_size=1000,
-            y_size=2000,
-            area_extent=(-1000000., -1500000., 1000000., 1500000.),
+            proj4_str_to_dict('+proj=lcc +datum=WGS84 +ellps=WGS84 +lon_0=-95. '
+                              '+lat_0=25 +lat_1=25 +units=m +no_defs'),
+            1000,
+            2000,
+            (-1000000., -1500000., 1000000., 1500000.),
         )
         now = datetime(2018, 1, 1, 12, 0, 0)
         ds = DataArray(
@@ -163,11 +163,11 @@ class TestSCMIWriter(unittest.TestCase):
             'test',
             'test',
             'test',
-            proj_dict=proj4_str_to_dict('+proj=lcc +datum=WGS84 +ellps=WGS84 +lon_0=-95. '
-                                        '+lat_0=25 +lat_1=25 +units=m +no_defs'),
-            x_size=1000,
-            y_size=2000,
-            area_extent=(4000000., 5000000., 5000000., 6000000.),
+            proj4_str_to_dict('+proj=lcc +datum=WGS84 +ellps=WGS84 +lon_0=-95. '
+                              '+lat_0=25 +lat_1=25 +units=m +no_defs'),
+            1000,
+            2000,
+            (4000000., 5000000., 5000000., 6000000.),
         )
         now = datetime(2018, 1, 1, 12, 0, 0)
         ds = DataArray(
@@ -197,11 +197,11 @@ class TestSCMIWriter(unittest.TestCase):
             'test',
             'test',
             'test',
-            proj_dict=proj4_str_to_dict('+proj=lcc +datum=WGS84 +ellps=WGS84 +lon_0=-95. '
-                                        '+lat_0=25 +lat_1=25 +units=m +no_defs'),
-            x_size=1000,
-            y_size=2000,
-            area_extent=(-1000000., -1500000., 1000000., 1500000.),
+            proj4_str_to_dict('+proj=lcc +datum=WGS84 +ellps=WGS84 +lon_0=-95. '
+                              '+lat_0=25 +lat_1=25 +units=m +no_defs'),
+            1000,
+            2000,
+            (-1000000., -1500000., 1000000., 1500000.),
         )
         now = datetime(2018, 1, 1, 12, 0, 0)
         ds = DataArray(
@@ -233,11 +233,11 @@ class TestSCMIWriter(unittest.TestCase):
             'test',
             'test',
             'test',
-            proj_dict=proj4_str_to_dict('+proj=lcc +datum=WGS84 +ellps=WGS84 +lon_0=-95. '
-                                        '+lat_0=25 +lat_1=25 +units=m +no_defs'),
-            x_size=100,
-            y_size=200,
-            area_extent=(-1000., -1500., 1000., 1500.),
+            proj4_str_to_dict('+proj=lcc +datum=WGS84 +ellps=WGS84 +lon_0=-95. '
+                              '+lat_0=25 +lat_1=25 +units=m +no_defs'),
+            100,
+            200,
+            (-1000., -1500., 1000., 1500.),
         )
         now = datetime(2018, 1, 1, 12, 0, 0)
         ds = DataArray(
