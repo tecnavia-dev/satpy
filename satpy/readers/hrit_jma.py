@@ -255,8 +255,8 @@ class HRITJMAFileHandler(HRITFileHandler):
                      'units': 'm'}
 
         area = geometry.AreaDefinition(
-            area_id=AREA_NAMES[self.area_id]['short'],
-            name=AREA_NAMES[self.area_id]['long'],
+            AREA_NAMES[self.area_id]['short'],
+            AREA_NAMES[self.area_id]['long'],
             'geosmsg',
             proj_dict,
             ncols,

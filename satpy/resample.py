@@ -403,11 +403,14 @@ class BaseResampler(object):
         cache_id = self.precompute(cache_dir=cache_dir, **kwargs)
         return self.compute(data, cache_id=cache_id, **kwargs)
 
-    def _create_cache_filename(self, cache_dir=None, prefix='',
+    def _create_cache_filename(self, cache_dir=None, cache_prefix="", prefix='',
                                fmt='.zarr', **kwargs):
         """Create filename for the cached resampling parameters."""
         cache_dir = cache_dir or '.'
         hash_str = self.get_hash(**kwargs)
+        
+        if cache_prefix is not "":
+            prefix = cache_prefix + "_" + prefix
 
         return os.path.join(cache_dir, prefix + hash_str + fmt)
 
@@ -450,6 +453,9 @@ class KDTreeResampler(BaseResampler):
         where data points are invalid.
 
         """
+
+        cache_prefix = kwargs['cache_prefix'] if 'cache_prefix' in kwargs else ""
+
         del kwargs
         source_geo_def = self.source_geo_def
 
@@ -483,12 +489,12 @@ class KDTreeResampler(BaseResampler):
             self.resampler = XArrayResamplerNN(**kwargs)
 
         try:
-            self.load_neighbour_info(cache_dir, mask=mask, **kwargs)
+            self.load_neighbour_info(cache_dir, mask=mask, cache_prefix=cache_prefix, **kwargs)
             LOG.debug("Read pre-computed kd-tree parameters")
         except IOError:
             LOG.debug("Computing kd-tree parameters")
             self.resampler.get_neighbour_info(mask=mask)
-            self.save_neighbour_info(cache_dir, mask=mask, **kwargs)
+            self.save_neighbour_info(cache_dir, mask=mask, cache_prefix=cache_prefix, **kwargs)
 
     def _apply_cached_index(self, val, idx_name, persist=False):
         """Reassign resampler index attributes."""
@@ -499,14 +505,15 @@ class KDTreeResampler(BaseResampler):
         setattr(self.resampler, idx_name, val)
         return val
 
-    def _check_numpy_cache(self, cache_dir, mask=None,
+    def _check_numpy_cache(self, cache_dir, cache_prefix="", mask=None,
                            **kwargs):
         """Check if there's Numpy cache file and convert it to zarr."""
-        fname_np = self._create_cache_filename(cache_dir,
+        fname_np = self._create_cache_filename(cache_dir, cache_prefix,
                                                prefix='resample_lut-',
                                                mask=mask, fmt='.npz',
                                                **kwargs)
-        fname_zarr = self._create_cache_filename(cache_dir, prefix='nn_lut-',
+        fname_zarr = self._create_cache_filename(cache_dir, cache_prefix,
+                                                 prefix='nn_lut-',
                                                  mask=mask, fmt='.zarr',
                                                  **kwargs)
 
@@ -523,13 +530,13 @@ class KDTreeResampler(BaseResampler):
             # Write indices to Zarr file
             zarr_out.to_zarr(fname_zarr)
 
-    def load_neighbour_info(self, cache_dir, mask=None, **kwargs):
+    def load_neighbour_info(self, cache_dir, mask=None, cache_prefix="", **kwargs):
         """Read index arrays from either the in-memory or disk cache."""
         mask_name = getattr(mask, 'name', None)
         cached = {}
-        self._check_numpy_cache(cache_dir, mask=mask_name, **kwargs)
+        self._check_numpy_cache(cache_dir, cache_prefix, mask=mask_name, **kwargs)
 
-        filename = self._create_cache_filename(cache_dir, prefix='nn_lut-',
+        filename = self._create_cache_filename(cache_dir, cache_prefix, prefix='nn_lut-',
                                                mask=mask_name, **kwargs)
         for idx_name in NN_COORDINATES.keys():
             if mask_name in self._index_caches:
@@ -549,13 +556,13 @@ class KDTreeResampler(BaseResampler):
                 raise IOError
         self._index_caches[mask_name] = cached
 
-    def save_neighbour_info(self, cache_dir, mask=None, **kwargs):
+    def save_neighbour_info(self, cache_dir, mask=None, cache_prefix="", **kwargs):
         """Cache resampler's index arrays if there is a cache dir."""
         if cache_dir:
             mask_name = getattr(mask, 'name', None)
             cache = self._read_resampler_attrs()
             filename = self._create_cache_filename(
-                cache_dir, prefix='nn_lut-', mask=mask_name, **kwargs)
+                cache_dir, cache_prefix, prefix='nn_lut-', mask=mask_name, **kwargs)
             LOG.info('Saving kd_tree neighbour info to %s', filename)
             zarr_out = xr.Dataset()
             for idx_name, coord in NN_COORDINATES.items():
@@ -796,6 +803,8 @@ class BilinearResampler(BaseResampler):
         where data points are invalid. This defaults to the `mask` attribute of
         the `data` numpy masked array passed to the `resample` method.
         """
+        cache_prefix = kwargs['cache_prefix'] if 'cache_prefix' in kwargs else ""
+
         del kwargs
 
         if self.resampler is None:
@@ -808,17 +817,17 @@ class BilinearResampler(BaseResampler):
 
             self.resampler = XArrayResamplerBilinear(**kwargs)
             try:
-                self.load_bil_info(cache_dir, **kwargs)
+                self.load_bil_info(cache_dir, cache_prefix=cache_prefix, **kwargs)
                 LOG.debug("Loaded bilinear parameters")
             except IOError:
                 LOG.debug("Computing bilinear parameters")
                 self.resampler.get_bil_info()
-                self.save_bil_info(cache_dir, **kwargs)
+                self.save_bil_info(cache_dir, cache_prefix=cache_prefix, **kwargs)
 
-    def load_bil_info(self, cache_dir, **kwargs):
+    def load_bil_info(self, cache_dir, cache_prefix="", **kwargs):
         """Load bilinear resampling info from cache directory."""
         if cache_dir:
-            filename = self._create_cache_filename(cache_dir,
+            filename = self._create_cache_filename(cache_dir, cache_prefix,
                                                    prefix='bil_lut-',
                                                    **kwargs)
             for val in BIL_COORDINATES.keys():
@@ -836,10 +845,10 @@ class BilinearResampler(BaseResampler):
         else:
             raise IOError
 
-    def save_bil_info(self, cache_dir, **kwargs):
+    def save_bil_info(self, cache_dir, cache_prefix="", **kwargs):
         """Save bilinear resampling info to cache directory."""
         if cache_dir:
-            filename = self._create_cache_filename(cache_dir,
+            filename = self._create_cache_filename(cache_dir, cache_prefix,
                                                    prefix='bil_lut-',
                                                    **kwargs)
             LOG.info('Saving BIL neighbour info to %s', filename)
@@ -1074,7 +1083,8 @@ def resample_dataset(dataset, destination_area, **kwargs):
     
     no_cache = kwargs.pop('no_cache_for', [])
     if dataset.attrs['name'] in no_cache:
-        kwargs['cache_dir'] = False
+        #kwargs['cache_dir'] = False
+        kwargs['cache_prefix'] = dataset.attrs['name']
         LOG.info('Caching removed for %s', dataset.attrs['name'])
 
     new_data = resample(source_area, dataset, destination_area, fill_value=fill_value, **kwargs)
